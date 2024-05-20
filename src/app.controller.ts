@@ -3,10 +3,11 @@ import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
+  // eslint-disable-next-line no-empty-function
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Get('health')
+  health(): string {
+    return AppService.health();
   }
 }
