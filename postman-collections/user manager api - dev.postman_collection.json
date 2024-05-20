@@ -1,0 +1,295 @@
+{
+	"info": {
+		"_postman_id": "9e6ff28e-a679-4d2a-b2b2-d44089185ccb",
+		"name": "user manager api - dev",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34738901"
+	},
+	"item": [
+		{
+			"name": "https://starfish-app-rxuo7.ondigitalocean.app/users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://starfish-app-rxuo7.ondigitalocean.app/users",
+					"protocol": "https",
+					"host": [
+						"starfish-app-rxuo7",
+						"ondigitalocean",
+						"app"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://starfish-app-rxuo7.ondigitalocean.app/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"userId\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"uuid": "6325a36c-2dd9-4b89-83c3-f54e0f4ffbb5"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"John Doe\",\n  \"cpf\": \"12345678901\",\n  \"telefone\": \"1234567890\",\n  \"email\": \"john.doe@example.com\"\n}"
+				},
+				"url": {
+					"raw": "https://starfish-app-rxuo7.ondigitalocean.app/users",
+					"protocol": "https",
+					"host": [
+						"starfish-app-rxuo7",
+						"ondigitalocean",
+						"app"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://starfish-app-rxuo7.ondigitalocean.app/users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://starfish-app-rxuo7.ondigitalocean.app/users/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"starfish-app-rxuo7",
+						"ondigitalocean",
+						"app"
+					],
+					"path": [
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://starfish-app-rxuo7.ondigitalocean.appusers/:id",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"uuid": "3b9a6114-be8b-4492-9076-2ac1836221db"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nome\": \"Jane Doe 3\",\n  \"cpf\": \"09876543210\",\n  \"telefone\": \"0987654321\",\n  \"email\": \"jane.doe@example.com\"\n}"
+				},
+				"url": {
+					"raw": "https://starfish-app-rxuo7.ondigitalocean.app/users/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"starfish-app-rxuo7",
+						"ondigitalocean",
+						"app"
+					],
+					"path": [
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://starfish-app-rxuo7.ondigitalocean.app/users/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://starfish-app-rxuo7.ondigitalocean.app/users/{{userId}}",
+					"protocol": "https",
+					"host": [
+						"starfish-app-rxuo7",
+						"ondigitalocean",
+						"app"
+					],
+					"path": [
+						"users",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://starfish-app-rxuo7.ondigitalocean.app/users/1/addresses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://starfish-app-rxuo7.ondigitalocean.app/users/{{userId}}/addresses",
+					"protocol": "https",
+					"host": [
+						"starfish-app-rxuo7",
+						"ondigitalocean",
+						"app"
+					],
+					"path": [
+						"users",
+						"{{userId}}",
+						"addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://starfish-app-rxuo7.ondigitalocean.app/users/1/addresses",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"pm.environment.set(\"addressId\", jsonData.id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"uuid": "d1fde3cc-4043-4513-99be-3a9030eb3768"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"logradouro\": \"Main St\",\n  \"numero\": \"123\",\n  \"bairro\": \"bairro 1\",\n  \"cidade\": \"Anytown\",\n  \"estado\": \"Anystate\"\n}"
+				},
+				"url": {
+					"raw": "https://starfish-app-rxuo7.ondigitalocean.app/users/{{userId}}/addresses",
+					"protocol": "https",
+					"host": [
+						"starfish-app-rxuo7",
+						"ondigitalocean",
+						"app"
+					],
+					"path": [
+						"users",
+						"{{userId}}",
+						"addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://starfish-app-rxuo7.ondigitalocean.app/users/{{userId}}/addresses/{{addressId}}",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"uuid": "5bd0713e-91eb-4804-b7cc-47588af687b9"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"logradouro\": \"Main St 2\",\n  \"numero\": \"1233333\",\n  \"bairro\": \"bairro 2\",\n  \"cidade\": \"Anytown\",\n  \"estado\": \"Anystate\"\n}"
+				},
+				"url": {
+					"raw": "https://starfish-app-rxuo7.ondigitalocean.app/users/{{userId}}/addresses/{{addressId}}",
+					"protocol": "https",
+					"host": [
+						"starfish-app-rxuo7",
+						"ondigitalocean",
+						"app"
+					],
+					"path": [
+						"users",
+						"{{userId}}",
+						"addresses",
+						"{{addressId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://starfish-app-rxuo7.ondigitalocean.app/users/{{userId}}/addresses/{{addressId}}",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"uuid": "f863b1df-661b-4864-b793-da4c2b2cb6bf"
+					}
+				],
+				"url": {
+					"raw": "https://starfish-app-rxuo7.ondigitalocean.app/users/{{userId}}/addresses/{{addressId}}",
+					"protocol": "https",
+					"host": [
+						"starfish-app-rxuo7",
+						"ondigitalocean",
+						"app"
+					],
+					"path": [
+						"users",
+						"{{userId}}",
+						"addresses",
+						"{{addressId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://starfish-app-rxuo7.ondigitalocean.app/health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://starfish-app-rxuo7.ondigitalocean.app/health",
+					"protocol": "https",
+					"host": [
+						"starfish-app-rxuo7",
+						"ondigitalocean",
+						"app"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
