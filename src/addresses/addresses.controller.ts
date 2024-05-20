@@ -8,6 +8,7 @@ import {
   Delete,
   NotFoundException,
 } from '@nestjs/common';
+import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AddressesService } from './addresses.service';
 import {
   CreateAddressDto,
@@ -15,7 +16,6 @@ import {
 } from './dto/create-address.dto';
 import { UpdateAddressDto } from './dto/update-address.dto';
 import { UsersService } from '../users/users.service';
-import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('addresses')
 @Controller('users/:userId/addresses')
@@ -39,14 +39,14 @@ export class AddressesController {
   })
   @Post()
   async create(
-    @Param('userId') user_id: string,
+    @Param('userId') userId: string,
     @Body() createAddressDto: CreateAddressDto,
   ) {
-    const user = await this.usersService.findOne(+user_id);
+    const user = await this.usersService.findOne(+userId);
     if (!user) {
       throw new NotFoundException('User not found posts');
     }
-    return await this.addressesService.create(+user_id, createAddressDto);
+    return this.addressesService.create(+userId, createAddressDto);
   }
 
   @Get()
@@ -62,12 +62,12 @@ export class AddressesController {
     required: true,
     description: 'The id of the user',
   })
-  async findAll(@Param('userId') user_id: string) {
-    const user = await this.usersService.findOne(+user_id);
+  async findAll(@Param('userId') userId: string) {
+    const user = await this.usersService.findOne(+userId);
     if (!user) {
       throw new NotFoundException('User not found get');
     }
-    return await this.addressesService.findAll(+user_id);
+    return this.addressesService.findAll(+userId);
   }
 
   @Patch(':id')
@@ -89,11 +89,11 @@ export class AddressesController {
     description: 'The id of the address',
   })
   async update(
-    @Param('userId') user_id,
+    @Param('userId') userId,
     @Param('id') id: string,
     @Body() updateAddressDto: UpdateAddressDto,
   ) {
-    const user = await this.usersService.findOne(+user_id);
+    const user = await this.usersService.findOne(+userId);
     if (!user) {
       throw new NotFoundException('User not found');
     }
@@ -101,7 +101,7 @@ export class AddressesController {
     if (!address) {
       throw new NotFoundException('Address not found');
     }
-    return await this.addressesService.update(+id, updateAddressDto);
+    return this.addressesService.update(+id, updateAddressDto);
   }
 
   @Delete(':id')
@@ -121,8 +121,8 @@ export class AddressesController {
     required: true,
     description: 'The id of the address',
   })
-  async remove(@Param('userId') user_id, @Param('id') id: string) {
-    const user = await this.usersService.findOne(+user_id);
+  async remove(@Param('userId') userId, @Param('id') id: string) {
+    const user = await this.usersService.findOne(+userId);
     if (!user) {
       throw new NotFoundException('User not found');
     }
@@ -130,6 +130,6 @@ export class AddressesController {
     if (!address) {
       throw new NotFoundException('Address not found');
     }
-    return await this.addressesService.remove(+id);
+    return this.addressesService.remove(+id);
   }
 }

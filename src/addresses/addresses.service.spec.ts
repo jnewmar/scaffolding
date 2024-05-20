@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AddressesService } from './addresses.service';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { AddressesService } from './addresses.service';
 import { Address } from './entities/address.entity';
 import { UsersService } from '../users/users.service';
-import { Repository } from 'typeorm';
 import { User } from '../users/entities/user.entity';
 
 describe('AddressesService', () => {

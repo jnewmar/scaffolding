@@ -36,6 +36,8 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'no-useless-constructor': 'off',
     'radix': 'off',
+    'no-return-await' : 'warn',
+    'no-empty-function': 'off',
     "no-console": "warn",
     "promise/always-return": "error",
     "promise/no-return-wrap": "error",

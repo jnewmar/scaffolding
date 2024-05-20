@@ -33,7 +33,7 @@ export class UsersController {
   }) // Use the CreateUserDtoWithId type as the value
   @ApiBody({ type: CreateUserDto })
   async create(@Body() createUserDto: CreateUserDto) {
-    return await this.usersService.create(createUserDto);
+    return this.usersService.create(createUserDto);
   }
 
   @Get()
@@ -44,7 +44,7 @@ export class UsersController {
     description: 'Return all users.',
   })
   async findAll() {
-    return await this.usersService.findAll();
+    return this.usersService.findAll();
   }
 
   @Get(':id')
@@ -79,7 +79,7 @@ export class UsersController {
     if (!user) {
       throw new NotFoundException('User not found');
     }
-    return await this.usersService.update(+id, updateUserDto);
+    return this.usersService.update(+id, updateUserDto);
   }
 
   @Delete(':id')
@@ -95,6 +95,6 @@ export class UsersController {
     if (!user) {
       throw new NotFoundException('User not found');
     }
-    return await this.usersService.remove(+id);
+    return this.usersService.remove(+id);
   }
 }

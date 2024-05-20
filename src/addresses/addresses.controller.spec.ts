@@ -7,7 +7,6 @@ import { User } from '../users/entities/user.entity';
 describe('AddressesController', () => {
   let controller: AddressesController;
   let addressesService: AddressesService;
-  let usersService: UsersService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -38,7 +37,6 @@ describe('AddressesController', () => {
 
     controller = module.get<AddressesController>(AddressesController);
     addressesService = module.get<AddressesService>(AddressesService);
-    usersService = module.get<UsersService>(UsersService);
   });
 
   it('should be defined', () => {

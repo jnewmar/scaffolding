@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 
