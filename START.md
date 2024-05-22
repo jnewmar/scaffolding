@@ -100,4 +100,37 @@ Also it was necessary adjust some rules to work with some the nest.js patterns
 docker run --name upay-postgres -p 5432:5432 -e POSTGRES_PASSWORD=123456 -e POSTGRES_USER=upay -e POSTGRES_DB=upay  -d postgres
 
 Pgadmin client
-https://www.postgresql.org/download/
+https://www.pgadmin.org/download/
+
+## Run a local mongoDb
+
+docker run --name upay-mongo -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME=upay -e MONGO_INITDB_ROOT_PASSWORD=123456 -e MONGO_INITDB_DATABASE=upay -d mongo
+
+
+mongo express
+
+docker run --name upay-mongo-express -p 8081:8081 -e ME_CONFIG_MONGODB_ADMINUSERNAME=admin -e ME_CONFIG_MONGODB_ADMINPASSWORD=pass -e ME_CONFIG_MONGODB_SERVER=upay-mongo --link upay-mongo:mongo -d mongo-express
+
+Acesse en http://localhost:8081
+
+
+
+## Install mongoose
+
+npm install @nestjs/mongoose mongoose
+
+npm install @nestjs/config
+
+´´´´´
+    ConfigModule.forRoot({
+      isGlobal: true, // Torna as variáveis de ambiente acessíveis globalmente
+    }),
+    MongooseModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: `mongodb://${configService.get<string>('MONGO_DB_USER')}:${configService.get<string>('MONGO_DB_PASS')}@${configService.get<string>('MONGO_DB_HOST')}:${configService.get<string>('MONGO_DB_PORT')}/${configService.get<string>('MONGO_DB_NAME')}?authSource=admin`,
+      }),
+      inject: [ConfigService],
+    }),
+ ´´´´
+
